@@ -10,7 +10,7 @@ function get_data() {
                     
                 if (err) throw err;
                       data = (data.toString().split("\n"))
-                    formate_data(data)
+                    accounts, transactions =  formate_data(data = data)
                 // [
                 //     'Add Tom 4111111111111111 $1000',
                 //     'Add Lisa 5454545454545454 $3000',
@@ -21,15 +21,14 @@ function get_data() {
                 //     'Credit Lisa $100',
                 //     'Credit Quincy $200'
                 //   ]
-                    
                 let credit_data = CreditRecordsCollection(accounts = accounts)
                 credit_data.process(transactions = transactions)
             
-                process.stdout.write(credit_data); 
-             })
-        // return content
+            })
+            process.stdout.write(credit_data); 
+         return content
           
 }
-        get_data()
+export default get_data
     
 

@@ -35,30 +35,30 @@ let deque = []
 
 function formate_data(data, accounts = deque, transactions = deque) {
      console.log(data)
-    // for (const line in data.toString().trim()) {
-    //     line = line.split(' ')
+    for (const line in data.toString().trim()) {
+        line = line.split(' ')
        
-    //     if (line[0] == 'Add') {
-    //         accounts.append(Account(
-    //             name = line[1],
-    //             account_number = line[2],
-    //             limit = parseInt(line[3]).slice(1),
-    //             amount = 0,
-    //             verified = is_luhn_valid(line[2])
-    //         ))
+        if (line[0] == 'Add') {
+            accounts.append(Account(
+                name = line[1],
+                account_number = line[2],
+                limit = parseInt(line[3]).slice(1),
+                amount = 0,
+                verified = is_luhn_valid(line[2])
+            ))
             
-    //     } else {
-    //         transactions.append(Transaction(
-    //             type = line[0],
-    //             name = line[1],
-    //             // [1:] is to slice off from the 1th index
-    //             amount = parseInt(line[2][1]).slice(1)
-    //         ))
-    //     }
-    // }
+        } else {
+            transactions.append(Transaction(
+                type = line[0],
+                name = line[1],
+                // [1:] is to slice off from the 1th index
+                amount = parseInt(line[2][1]).slice(1)
+            ))
+        }
+    }
     return (accounts, transactions)
 }
 
 
-export default ( formate_data());
+export default formate_data;
     

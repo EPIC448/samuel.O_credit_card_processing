@@ -31,4 +31,4 @@ function is_luhn_valid(card_number) {
 }
   
 
-export default{ _digits_of, _luhn_checksum, is_luhn_valid };
+export default _digits_of; _luhn_checksum; is_luhn_valid;
