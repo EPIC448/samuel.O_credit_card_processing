@@ -30,3 +30,5 @@ function is_luhn_valid(card_number) {
     return is_luhn_checksum(card_number) == 0
 }
   
+
+export default{ _digits_of, _luhn_checksum, is_luhn_valid };

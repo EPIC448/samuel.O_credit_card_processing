@@ -4,3 +4,6 @@
 
 
   USed javascript try...catch... finally  statement
+
+  Runing Test with 
+  node test_main.js
