@@ -7,3 +7,7 @@
 
   Runing Test with 
   node test_main.js
+
+   HOW USER IMPORT INFORMARTION
+   node app.js < input.txt
+

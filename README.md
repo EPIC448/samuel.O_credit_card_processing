@@ -13,4 +13,10 @@ To Test The file.
  (cd/path/to/braintree/CREDIT-CARD-PROCESS/tests)
   run "node test.js"
 
+
+TO used the STDIN input-  run  
+  node stdin_input.js
+
+TO used the  input file built in-  run  
+  node input.js
 ```

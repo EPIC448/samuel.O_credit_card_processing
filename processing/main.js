@@ -2,15 +2,21 @@
 import CreditRecordsCollection from '../utils/collection.js';
 import { default as get_data } from '../utils/data.js'
 import { default as format_data } from '../utils/data.js'
-
+/*
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
+*/
 
+import { fileURLToPath } from 'url';
+import process from 'process';
 
-let name
- console.log('In main.js file')
-if (require.main === module) {
-    data = get_data()
+ 
+// if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+
+    let data = get_data()
+    console.log(data)
+    let accounts, transactions
     accounts, transactions = format_data(data = data)
 
     let credit_data = CreditRecordsCollection(accounts = accounts)
