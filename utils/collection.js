@@ -87,17 +87,18 @@ class CreditRecordsCollection {
                 
                 if (value['verified']) {
                     response += "{}: ${}\n".formate(key, value['amount'])
+                    
                 } else {
                     response += "{}: ${}\n".formate(key,'error')
 
                 }
             }
-            return response
+            return process.stdout.write(response); 
+
         }
     }
 
-
-    
+     
 } // end of class
 
 
