@@ -19,10 +19,10 @@ function formate_data(data, accounts = [], transactions = []) {
     let amount;
     let verified;
     
-    const remove$ = (str) => {
-       return  str.replace('$', '')
+    // const remove$ = (str) => {
+    //    return  str.replace('$', '')
         
-    }
+    // }
 
     let formateTransactionOrAcc = {
         person_name: "",
@@ -35,7 +35,8 @@ function formate_data(data, accounts = [], transactions = []) {
     let accObj = {
         person_name : line[1],
         account_number : line[2],
-        limit : parseInt(remove$(line[3])),
+        // limit : parseInt(remove$(line[3])),
+        limit : line[3],
         amount : 0,
         verified : valid_credit_card(line[2])
     }
@@ -43,7 +44,7 @@ function formate_data(data, accounts = [], transactions = []) {
     let transactionObj = {
         type: line[0],
         person_name: line[1],
-        amount: parseInt(line[2])      
+        amount: line[2]      
     }
     
     
@@ -56,6 +57,8 @@ function formate_data(data, accounts = [], transactions = []) {
                 return val;
             }
             return JSON.parse(JSON.stringify(accObj, replacer))
+
+            
         }
     }
 
@@ -82,13 +85,26 @@ var transactionMaker = function (object) {
             accounts.push(render)
             
         } else {
+            
         let template = transactionMaker(transactionObj)
         let render = template(formateTransactionOrAcc)
         transactions.push(render)
         }
-    console.log(accounts, transactions)
-    return (accounts, transactions)
-
+    console.log (accounts, transactions)
+    return (accounts,  transactions)
+/* Print out
+accounts
+            [
+  {
+    person_name: 'Lisa',
+    account_number: '31231344',
+    limit: 1212131,
+    amount: 0,
+    verified: 'error'
+  }
+] [for transactions] => [ { type: 'Charge', person_name: 'Tom', amount: '$800,Add' } ]
+             */
+    
 }// end of function
 
 

@@ -100,3 +100,14 @@ class CollectiveTest{
 }
 
 export default CollectiveTest; Account; Transaction;
+
+
+
+/*
+For CreditRecordsCollection
+ constructor(
+     input-- - Add steve 411111111111111 $23525
+ )
+outpust--- steve 411111111111111 23525 0 error
+
+*/

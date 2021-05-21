@@ -18,11 +18,30 @@ let transactions = []
         
         content.push(data.toString().split("\n"))
 
-        accounts, transactions = formate_data(content)
-        let credit_data = CreditRecordsCollection(accounts = accounts)
-        credit_data.process(transactions = transactions)
+        accounts.push(formate_data(content))
+        //CreditRecordCollection an Object 
+        /*
+        console.log(accounts)
+        Add Tom 4111111111111111 $5245
+                    [
+                    [
+                        {
+                        person_name: 'Tom',
+                        account_number: '4111111111111111',
+                        limit: 5245,
+                        amount: 0,
+                        verified: true
+                        }
+                    ]
+                    ]
+        */
 
-        process.stdout.write(credit_data);
+        let credit_data = new CreditRecordsCollection(accounts)
+      console.log(credit_data)
+        // credit_data deals with Transctions
+        // credit_data.process(transactions = transactions)
+
+        // process.stdout.write(credit_data);
 
     })
 
