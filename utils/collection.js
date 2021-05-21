@@ -1,5 +1,4 @@
 // import { default as OrderedDict} from "collections/dict"
-// var Deque = require("collections/deque");
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
@@ -27,7 +26,7 @@ class CreditRecordsCollection {
 
     add = (self, account) => {
         let dict = new Object();
-        self.data[account.name] = dict
+        self.data[account.person_name] = dict
             dict = {
             account_number: account.account_number,
             limit: account.limit,
@@ -52,17 +51,17 @@ class CreditRecordsCollection {
     }
     
     credit = (self, transaction) => {
-        if (!self.is_holder_verified(transaction.name)) {
-            self.data[transaction.name]['amount'] = 'error'
+        if (!self.is_holder_verified(transaction.person_name)) {
+            self.data[transaction.person_name]['amount'] = 'error'
         } else {
-            self.data[transaction.name]['amount'] -= transaction.amount
+            self.data[transaction.person_name]['amount'] -= transaction.amount
         }
         
 
     }
 
-    is_holder_verified = (self, name) => {
-        return self.data[name]['verified']
+    is_holder_verified = (self, person_name) => {
+        return self.data[person_name]['verified']
     }
 
     process = (self, transctions) => {

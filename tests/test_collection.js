@@ -1,4 +1,3 @@
-// import {default as namedtuple, deque } from '@aureooms/js-collections' ;
 
 // import {default as luhnObj} from '../utils/luhn.js'
 
@@ -6,17 +5,18 @@
 // // console.log(_luhn_checksum)
 // // console.log(is_luhn_valid)
 
+
 import { default as  assert } from 'assert/strict';
 
 import CreditRecordsCollection from '../utils/collection.js';
-import { default as Account, Transaction } from '../utils/data.js'
-
+import {  Account, Transaction } from '../utils/data.js'
+ 
 class CollectiveTest{
  orderedDict = []
     setUp = (self) => {
         this.verified_account = this.orderedDict.push([
             Account(
-                name = 'John',
+                person_name = 'John',
                 account_number = '123456789',
                 limit = 1000,
                 amount = 0,
@@ -26,7 +26,7 @@ class CollectiveTest{
     }
     unverified_account = this.orderedDict.push([
         Account(
-            name = 'John',
+            person_name = 'John',
             account_number = '123456789',
             limit = 1000,
             amount = 0,
@@ -45,7 +45,7 @@ class CollectiveTest{
         transactions = this.orderedDict.push([
             Transaction(
                 type = 'Charge',
-                name = 'John',
+                person_name = 'John',
                 amount= 500
             )
         ])
@@ -59,7 +59,7 @@ class CollectiveTest{
         transactions = this.orderedDict.push([
             Transaction(
                 type = 'Charge',
-                name = 'John',
+                pereson_name = 'John',
                 amount= 500
             )
         ])
@@ -73,7 +73,7 @@ class CollectiveTest{
         transactions = this.orderedDict.push([
             Transaction(
                 type = 'Charge',
-                name = 'John',
+                person_name = 'John',
                 amount= 500
             )
         ])
@@ -87,7 +87,7 @@ class CollectiveTest{
         transactions = this.orderedDict.push([
             Transaction(
                 type = 'Charge',
-                name = 'John',
+                person_name = 'John',
                 amount= 500
             )
         ])
@@ -99,4 +99,4 @@ class CollectiveTest{
 
 }
 
-export default {Transaction, Account};
+export default CollectiveTest; Account; Transaction;

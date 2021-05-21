@@ -1,9 +1,12 @@
 import { default as readline } from 'readline'
-import { default as format_data } from './utils/data.js'
 import CreditRecordsCollection from './utils/collection.js';
+import { default as formate_data } from './utils/data.js';
 
-function stdin() {
-    let content = []
+
+
+let content = [];
+let accounts = [];
+let transactions = []
     var rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout,
@@ -11,21 +14,20 @@ function stdin() {
     });
   
     rl.on('line', function (data) {
-        //   content.push(data.toString().split("\n"));
-        content.push(data.toString().split("\n"))
-        //   return content
-        accounts, transction = formate_data(content)
 
+        
+        content.push(data.toString().split("\n"))
+
+        accounts, transactions = formate_data(content)
         let credit_data = CreditRecordsCollection(accounts = accounts)
         credit_data.process(transactions = transactions)
 
         process.stdout.write(credit_data);
 
     })
-}
 
-stdin()
 
+export default rl; 
   /*
   [ 'add  johnds 23231231 $2313213' ],
   [ '' ],
