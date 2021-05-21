@@ -1,64 +1,111 @@
 
 
 
-import { default as is_luhn_valid } from '../utils/luhn.js'
+import { default as valid_credit_card } from '../utils/luhn.js'
 import { default as fs } from 'fs'
 
+function formate_data(data, accounts = [], transactions = []) {
+    let line = data.toString().trim().split(' ')
+    /* line =  Add john 213123123 $3233434  
+    console.log(line[0])   //Add     
+    console.log(line[2])   //213123123     
+    
 
+    name of person = person_name
+    */
+    let person_name;
+    let limit;
+    let account_number;
+    let amount;
+    let verified;
+    
+    // const remove$ = (str) => {
+    //    return  str.replace('$', '')
+        
+    // }
 
+    let formateTransactionOrAcc = {
+        person_name: "",
+        acount_number: 0,
+        limit: 0,
+        amount:0,
+        verified: ''
+          
+    }
+    let accObj = {
+        person_name : line[1],
+        account_number : line[2],
+        // limit : parseInt(remove$(line[3])),
+        limit : line[3],
+        amount : 0,
+        verified : valid_credit_card(line[2])
+    }
+    
+    let transactionObj = {
+        type: line[0],
+        person_name: line[1],
+        amount: line[2]      
+    }
+    
+    
+    var accTemplateMaker = function (object) {
+        return function (context) {
+            var replacer = function (key, val) {
+                if (typeof val === 'function') {
+                    return context[val()]
+                }
+                return val;
+            }
+            return JSON.parse(JSON.stringify(accObj, replacer))
 
-const namedtuple = (element,[]) => {
-
-}
-
-Object.freeze(namedtuple)
-
-
-let Account = namedtuple(
-    'Accounts',
-    ['name',
-        'account_number',
-        'limit',
-        'amount',
-        'verified'
-    ])
-
-    let Transaction = namedtuple(
-        'Transations',
-        ['type',
-        'name',
-        'amount',
-        ])
-
-
-let deque = []
-
-function formate_data(data, accounts = deque, transactions = deque) {
-     console.log(data)
-    for (const line in data.toString().trim()) {
-        line = line.split(' ')
-       
-        if (line[0] == 'Add') {
-            accounts.append(Account(
-                name = line[1],
-                account_number = line[2],
-                limit = parseInt(line[3]).slice(1),
-                amount = 0,
-                verified = is_luhn_valid(line[2])
-            ))
             
-        } else {
-            transactions.append(Transaction(
-                type = line[0],
-                name = line[1],
-                // [1:] is to slice off from the 1th index
-                amount = parseInt(line[2][1]).slice(1)
-            ))
         }
     }
-    return (accounts, transactions)
+
+
+var transactionMaker = function (object) {
+    return function (context) {
+        var replacer = function (key, val) {
+            if (typeof val === 'function') {
+                return context[val()]
+            }
+            return val;
+        }
+        return JSON.parse(JSON.stringify(transactionObj, replacer))
+    }
 }
 
 
-export default formate_data;
+
     
+    if (line[0] == 'Add') {
+            
+            let template = accTemplateMaker(accObj)
+            let render = template(formateTransactionOrAcc)
+            accounts.push(render)
+            
+        } else {
+            
+        let template = transactionMaker(transactionObj)
+        let render = template(formateTransactionOrAcc)
+        transactions.push(render)
+        }
+    console.log (accounts, transactions)
+    return (accounts,  transactions)
+/* Print out
+accounts
+            [
+  {
+    person_name: 'Lisa',
+    account_number: '31231344',
+    limit: 1212131,
+    amount: 0,
+    verified: 'error'
+  }
+] [for transactions] => [ { type: 'Charge', person_name: 'Tom', amount: '$800,Add' } ]
+             */
+    
+}// end of function
+
+
+export default formate_data; 

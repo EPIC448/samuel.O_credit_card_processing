@@ -11,7 +11,8 @@
 
 To Test The file.
  (cd/path/to/braintree/CREDIT-CARD-PROCESS/tests)
-  run "node test.js"
+  run "node test_collection.js"
+  
 
 
 TO used the STDIN input-  run  

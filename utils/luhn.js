@@ -1,11 +1,7 @@
-function _digits_of(number) {
-     for (const i in number) {
-        return  parseInt(i)
-    }
-}
 
 
-function _luhn_checksum(card_number) {
+// in coming number has to be a string to get True or False 
+function valid_credit_card(value) {
     // Accept only digits, dashes or spaces
       if (/[^0-9-\s]+/.test(value)) return false;
   
@@ -23,12 +19,10 @@ function _luhn_checksum(card_number) {
           bEven = !bEven;
       }
   
-      return (nCheck % 10) == 0;
-}
-  
-function is_luhn_valid(card_number) {
-    return is_luhn_checksum(card_number) == 0
-}
+      return ((nCheck % 10) == 0) == true ? true : "error";
+    }
   
 
-export default _digits_of; _luhn_checksum; is_luhn_valid;
+
+
+export default valid_credit_card;
