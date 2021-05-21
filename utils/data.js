@@ -1,13 +1,8 @@
 
 
 
-import { default as is_luhn_valid } from '../utils/luhn.js'
+import { default as valid_credit_card } from '../utils/luhn.js'
 import { default as fs } from 'fs'
-
-
-
-
-
 
 function formate_data(data, accounts = [], transactions = []) {
     let line = data.toString().trim().split(' ')
@@ -34,7 +29,7 @@ function formate_data(data, accounts = [], transactions = []) {
         acount_number: 0,
         limit: 0,
         amount:0,
-        verified: 'tests'
+        verified: ''
           
     }
     let accObj = {
@@ -42,7 +37,7 @@ function formate_data(data, accounts = [], transactions = []) {
         account_number : line[2],
         limit : parseInt(remove$(line[3])),
         amount : 0,
-        verified : is_luhn_valid(line[2])
+        verified : valid_credit_card(line[2])
     }
     
     let transactionObj = {
@@ -93,12 +88,6 @@ var transactionMaker = function (object) {
         }
     console.log(accounts, transactions)
     return (accounts, transactions)
-
-
-
-
-
-
 
 }// end of function
 
