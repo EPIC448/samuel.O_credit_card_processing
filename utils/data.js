@@ -44,98 +44,22 @@ function accountInfo(type, person_name, account_number, limit, balance = 0, veri
 function charge( person_name, balance,  account = accountInfo()) {
     
         
-        if (account.verified != true) return balance = 'error'
-        if (account.balance + balance < account.limit && account.person_name == person_name) {
-            return account.amount += balance
-        } else {
-            return  // do nothing
-        }
+        // if (account.verified != true) return balance = 'error'
+        // if (account.balance + balance < account.limit && account.person_name == person_name) {
+        //       account.amount += balance
+        // } else {
+        //     return  // do nothing
+        // }
+        console.log(`${person_name}: ${balance}`)
  }
 
  function credit( person_name, balance,  account = accountInfo()) {
-    
-        if (account.verified != true) return balance = 'error'
-     if (account.person_name == person_name) {
-           return account.balance -= balance
-        
-    }
+    //     if (account.verified != true) return balance = 'error'
+    //  if (account.person_name == person_name) {
+    //        return account.balance -= balance
+    // }
+     console.log(`${person_name}: ${balance}`)
 }
     
-//     // const remove$ = (str) => {
-//     //    return  str.replace('$', '')
-        
-
-
-//     let formateTransactionOrAcc = {
-//         person_name: "",
-//         acount_number: 0,
-//         limit: 0,
-//         amount:0,
-//         verified: ''
-          
-//     }
-//     let accObj = {
-//         type: line[0],
-//         person_name : line[1],
-//         account_number : line[2],
-//         // limit : parseInt(remove$(line[3])),
-//         limit : line[3],
-//         amount : 0,
-//         verified : valid_credit_card(line[2])
-//     }
-    
-//     let transactionObj = {
-//         type: line[0],
-//         person_name: line[1],
-//         amount: line[2]      
-//     }
-    
-    
-//     var accTemplateMaker = function (object) {
-//         return function (context) {
-//             var replacer = function (key, val) {
-//                 if (typeof val === 'function') {
-//                     return context[val()]
-//                 }
-//                 return val;
-//             }
-//             return JSON.parse(JSON.stringify(accObj, replacer))
-
-            
-//         }
-//     }
-
-
-// var transactionMaker = function (object) {
-//     return function (context) {
-//         var replacer = function (key, val) {
-//             if (typeof val === 'function') {
-//                 return context[val()]
-//             }
-//             return val;
-//         }
-//         return JSON.parse(JSON.stringify(transactionObj, replacer))
-//     }
-// }
-
-
-
-    
-//     if (line[0] == 'Add') {
-            
-//             let template = accTemplateMaker(accObj)
-//             let render = template(formateTransactionOrAcc)
-//             accounts.push(render)
-            
-//         } else {
-            
-//         let template = transactionMaker(transactionObj)
-//         let render = template(formateTransactionOrAcc)
-//         transactions.push(render)
-//         }
-//     return [accounts,  transactions]
-
-    
-
 
 export default formate_data; 
