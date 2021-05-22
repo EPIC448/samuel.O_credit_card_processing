@@ -11,7 +11,7 @@ function credit_Card_Inforamtion(accountData) {
                 
                 const element = eachItem[key];
 
-                // console.log(element.type) // Return type of Add or Charge...
+                 console.log(element.type) // Return type of Add or Charge...
                 if (element.type == 'Add') {
                     // call createAccount function(person_name, account_number....)
                     Account(element.person_name,element.account_number, element.limit, element.amount, element.verified)
@@ -29,7 +29,7 @@ function credit_Card_Inforamtion(accountData) {
         }    
     })
 }
-const storeAccountInfor = [] // working and stores data.
+const storeAccountInfor = [] // Store Created account Information
 
 function Account(person_name,account_number,limit,amount,verified){
     person_name = person_name;
@@ -37,11 +37,12 @@ function Account(person_name,account_number,limit,amount,verified){
     limit = limit;
     amount = amount;
     verified = verified;
-    
+    storeAccountInfor.push([person_name,account_number,limit,amount,verified])
 }
 
 // Working 
-Account.prototype.charge = function (person_name,amount) {
+Account.prototype.charge = function (person_name, amount) {
+
     if (this.verified != true) return this.amount = 'error'
     if (this.amount + amount < this.limit && this.person_name == person_name) {
         return this.amount += limit
@@ -56,13 +57,18 @@ Account.prototype.credit = function (person_name,amount) {
            return [this.amount -= amount]
         
     }
-console.log(storeAccountInfor)
 }
 
 
 export default credit_Card_Inforamtion;
 
 
+const a = new Account('Tom', 88888888, '5245',0,true)
+a.charge(245)
+process.stdout.write(`
+(${a.name}, ${a.balance}),
+
+`); 
 
 /*
 class CreditRecordsCollection {
@@ -93,7 +99,8 @@ class CreditRecordsCollection {
     
     
 
-    // _str_ = () => {
+    //  Ho I will formate the Data
+    _str_ = () => {
     //     let response = ""
     //     // if  data is verified, we will print out the acount if note,we use  the other print
     //     for(let i = 0; i< this.rear; i++){

@@ -83,3 +83,6 @@ hashData.map((nestedObject) => {
  }
  
 // [ ' Tom: 1000', ' Better: 4000', ' Lisa: 900' ]
+
+//  Go line by line. 
+CODE LINE BY LINE
