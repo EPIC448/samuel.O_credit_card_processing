@@ -3,103 +3,117 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { default as formate_data} from './data.js';
 
-class CreditRecordsCollection {
-    constructor(accountdata, person_name, account_number, limit, amount, verified) {
-        this.hashMap = []
-        accountdata.map(function (eachItem) {
-           // Working and Getting the needed data
-            person_name = eachItem[0].person_name
-            account_number = eachItem[0].account_number
-            limit = eachItem[0].limit
-            amount = eachItem[0].amount
-            verified = eachItem[0].verified
-        })
-    }
-     // Create a new account and pass into HashMap
-    addAccount =(typedInput) =>{
-        this.hashMap.push(typedInput)
-            return this.hashMap
-    }
+//Turn Class into a function
+function credit_Card_Inforamtion(accountData) {
+    accountData.map(function (eachItem) {
+        for (const key in eachItem) {
+            if (Object.hasOwnProperty.call(eachItem, key)) {
+                
+                const element = eachItem[key];
+
+                // console.log(element.type) // Return type of Add or Charge...
+                if (element.type == 'Add') {
+                    // call createAccount function(person_name, account_number....)
+                    Account(element.person_name,element.account_number, element.limit, element.amount, element.verified)
+                     
+                } else if(element.type == 'Charge') {
+                    Account.prototype.charge(element.person_name, element.amount)
+                } else if (element.type == 'Credit') {
+                    Account.prototype.credit(element.person_name, element.amount)
+
+
+                } else {
+                    return 'got nothing for you'
+                }
+            }
+        }    
+    })
+}
+const storeAccountInfor = [] // working and stores data.
+
+function Account(person_name,account_number,limit,amount,verified){
+    person_name = person_name;
+    account_number = account_number;
+    limit = limit;
+    amount = amount;
+    verified = verified;
     
-    charge = (person_name, amount) => {
-        // Check if user accoun
-        if (this.verified != true) return this.amount = 'error'
-        if (this.amount + amount < this.limit && this.person_name == person_name) {
-            this.hashMap.push(this.amount += limit)
-        } else {
-            return  // do nothing
-        }
+}
+
+// Working 
+Account.prototype.charge = function (person_name,amount) {
+    if (this.verified != true) return this.amount = 'error'
+    if (this.amount + amount < this.limit && this.person_name == person_name) {
+        return this.amount += limit
+    } else {
+        return  // do nothing
     }
-     
-    credit = (person_name,amount) => {
+}
+    //  working
+Account.prototype.credit = function (person_name,amount) {
         if (this.verified != true) return this.amount = 'error'
         if (this.name == person_name) {
-            this.hashMap.push(this.amount -= amount)
-        }
+           return [this.amount -= amount]
+        
+    }
+console.log(storeAccountInfor)
+}
 
+
+export default credit_Card_Inforamtion;
+
+
+
+/*
+class CreditRecordsCollection {
+    newAcctCollection = []
+    transcationsCollection = []
+
+    constructor(accountdata) {
+        
+        
     }
 
-    _str_ = () =>{
-        for(let i = 0; i< this.rear; i++){
-            console.log(this.hashMap[i])
-            // formate the data from here
-        }
+
+           // Working and Getting the needed data
+            
+            // person_name = eachItem[0].person_name
+            // account_number = eachItem[0].account_number
+            // limit = eachItem[0].limit
+            // amount = eachItem[0].amount
+            // verified = eachItem[0]
+    //  // Create a new account and pass into HashMap
+    // addAccount =(typedInput) =>{
+    //     this.acctHashMap.push(typedInput)
+    //         return this.acctHashMap
+    // }
     
-    }
-
-
-
-    break;
-
-
-   
+    
+     
     
     
 
+    // _str_ = () => {
+    //     let response = ""
+    //     // if  data is verified, we will print out the acount if note,we use  the other print
+    //     for(let i = 0; i< this.rear; i++){
+    //         console.log(this.hashMap[i])
+    //         // formate the data from here
+    //     }
+    //     for(let i = 0; i< this.rear; i++){
+    //         console.log(this.hashMap[i])
+    //         // formate the data from here
+    //     }
+    
     // }
 
+
     
-    // process = (self, transctions) => {
-    //     while (transctions) {
-    //         transction = transctions.shif()
-    //     }
-
-    //     if (typeof transctions == 'Charge') {
-    //         this.charge(transction)
-    //     } else if (typeof transctions == 'Credit'){
-    //         this.credit(transction)
-    //     } else {
-    //         return
-    //     }
-    // }
-  
-
-    // _str_ = (self) => {
-    //     response = ""
-
-    //     for (const key in self.data.items) {
-    //         for (const value in key) {
-                
-    //             if (value['verified']) {
-    //                 response += "{}: ${}\n".formate(key, value['amount'])
-                    
-    //             } else {
-    //                 response += "{}: ${}\n".formate(key,'error')
-
-    //             }
-    //         }
-    //         return process.stdout.write(response); 
-
-    //     }
-    // }
-
      
 } // end of class
 
 
-export default CreditRecordsCollection;
+*/
 
-/// How we expor the Body of a class
-// export default class CreditRecordsCollection {
-//     // The body of class
-//    }
+
+
