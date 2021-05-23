@@ -1,0 +1,53 @@
+import { default as valid_credit_card } from './luhn.js'
+
+let accounts = {}
+let test = []
+
+function formate_data(data) {
+    let line = data.toString().trim().split(' ')
+    
+    // if Account Number is Valid Create account else (balace or amount) = error
+    if (line[0] == "Add") {
+       //  If the file has Add, PUSH INTO accounts Object. 
+ console.log(line)
+        // accounts=(new accountInforObject 
+        test.push[(line[1], line[2], line[3])]
+
+    } else if (line[0] == 'Charge') {
+        
+        AccountInfo.prototype.charge(line[1], line[2])
+    } else if (line[0] == 'Credit') {
+       AccountInfo.prototype.credit(line[1], line[2])
+
+    }
+
+}
+
+//object that stores account information 
+const accountInforObject = {
+    person_name: test[1],
+    account_number : test[2],
+    limit :test[3],
+    verified : test[4],
+    balance : 0, 
+    // charge (person_name, balance) {
+    //     console.log(accountInforObject.limit)
+    // },
+
+    // credit  (){
+        
+    // }
+}
+  
+
+  export default formate_data;
+
+  /* 
+// export an object
+export default accounts
+
+=> import the data from accounts into input.js.. as parse it as needed
+ such as this
+ accounts[accountnumber] = accounts
+
+ */

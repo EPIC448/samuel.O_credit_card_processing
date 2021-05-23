@@ -19,7 +19,7 @@ function valid_credit_card(value) {
           bEven = !bEven;
       }
   
-      return ((nCheck % 10) == 0) == true ? true : "error";
+      return ((nCheck % 10) == 0) == true ? true : false;
     }
   
 

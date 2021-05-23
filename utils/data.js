@@ -1,16 +1,16 @@
 
 import { default as valid_credit_card } from '../utils/luhn.js'
 
+let accounts = {}
 
-let newAcc = []
 function formate_data(data) {
     let line = data.toString().trim().split(' ')
     
     // if Account Number is Valid Create account else (balace or amount) = error
     if (line[0] == "Add") {
-       // instance of a new Account
-        newAcc.push(AccountInfo(line[1], line[2], line[3]))
-        console.log(newAcc)
+       //  If the file has Add, PUSH INTO accounts Object. 
+
+        accounts = (AccountInfo(line[1], line[2], line[3]))
 
     } else if (line[0] == 'Charge') {
         
@@ -21,6 +21,7 @@ function formate_data(data) {
     }
 
 }
+
 
 function AccountInfo( person_name, account_number, limit, verified= "",balance = 0 ) {
     
@@ -42,28 +43,35 @@ function AccountInfo( person_name, account_number, limit, verified= "",balance =
     }
 }
 
-AccountInfo.prototype.charge= function ( person_name, balance, account = new AccountInfo) {
-    
-        // if (account.verified != true) return balance = 'error'
-        // if (account.balance + balance > account.limit ) {
-        //     account.balance += balance
-                console.log(`${person_name}: ${balance}`)
+ 
 
-        // } else {
-        //     return  // do nothing
-        // }
+AccountInfo.prototype.charge = function (person_name, balance) {
+   
+  
+    if (accounts.name = person_name) {
+        if (accounts.verified != true) return balance = 'error'
+        if (accounts.balance + balance < accounts.limit) {
+            account.balance += balance
+        }
+        console.log(`${accounts.person_name}: $${accounts.balance}`)
+    }
+       
  }
 
  AccountInfo.prototype.credit = function ( person_name, balance, account = new AccountInfo ) {
-    //     if (account.verified != true) return balance = 'error'
-    //  if (account.person_name == person_name) {
-    //       account.balance -= balance
-         console.log(`${person_name}: ${balance}`)
 
-    //  } else {
-    //      return
-    // }
     
-}
-    
+    if (accounts.name = person_name) {
+        if (accounts.verified != true) return balance = 'error'
+            account.balance -= balance
+    } else {
+        return
+        }
+        console.log(`${accounts.person_name}: $${accounts.balance}`)
+     
+ }
+ 
+
+export default formate_data;
+
 
