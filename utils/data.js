@@ -2,37 +2,38 @@
 import { default as valid_credit_card } from '../utils/luhn.js'
 
 
-
+let newAcc = []
 function formate_data(data) {
     let line = data.toString().trim().split(' ')
     
     // if Account Number is Valid Create account else (balace or amount) = error
     if (line[0] == "Add") {
        // instance of a new Account
-          accountInfo(line[0], line[1], line[2], line[3]) 
-        
+        newAcc.push(AccountInfo(line[1], line[2], line[3]))
+        console.log(newAcc)
+
     } else if (line[0] == 'Charge') {
-        charge(line[1], line[2])
-     
+        
+        AccountInfo.prototype.charge(line[1], line[2])
     } else if (line[0] == 'Credit') {
-        credit(line[1], line[2])
+       AccountInfo.prototype.credit(line[1], line[2])
 
     }
-    
+
 }
 
-function accountInfo(type, person_name, account_number, limit, balance = 0, verified= "") {
+function AccountInfo( person_name, account_number, limit, verified= "",balance = 0 ) {
     
     // if not valid_credit_card != balance  =  "err0r"
-    type = type
+   
     person_name = person_name;
     account_number = account_number;
     limit = limit;
-    balance = 0;
     verified = valid_credit_card(account_number);
+    balance = verified != true ? "error" : balance;
     //return value as object
     return {
-        type,
+      
         person_name,
         account_number,
         limit,
@@ -41,25 +42,28 @@ function accountInfo(type, person_name, account_number, limit, balance = 0, veri
     }
 }
 
-function charge( person_name, balance,  account = accountInfo()) {
+AccountInfo.prototype.charge= function ( person_name, balance, account = new AccountInfo) {
     
-        
         // if (account.verified != true) return balance = 'error'
-        // if (account.balance + balance < account.limit && account.person_name == person_name) {
-        //       account.amount += balance
+        // if (account.balance + balance > account.limit ) {
+        //     account.balance += balance
+                console.log(`${person_name}: ${balance}`)
+
         // } else {
         //     return  // do nothing
         // }
-        console.log(`${person_name}: ${balance}`)
  }
 
- function credit( person_name, balance,  account = accountInfo()) {
+ AccountInfo.prototype.credit = function ( person_name, balance, account = new AccountInfo ) {
     //     if (account.verified != true) return balance = 'error'
     //  if (account.person_name == person_name) {
-    //        return account.balance -= balance
+    //       account.balance -= balance
+         console.log(`${person_name}: ${balance}`)
+
+    //  } else {
+    //      return
     // }
-     console.log(`${person_name}: ${balance}`)
+    
 }
     
 
-export default formate_data; 
