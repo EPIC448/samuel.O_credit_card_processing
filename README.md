@@ -11,7 +11,7 @@ No dependencies required
 # cd into the  rootfolder
  (cd/path/to/braintree/CREDIT-CARD-PROCESSING)
  
-To Test The file.
+To test The file.
   run "node test_luhn.js"
   
 TO used the STDIN input-  run  
@@ -27,7 +27,9 @@ TO used the  input file built in-  run
 
 so I query the "input.txt" file after every call  and store it a Object so that the Prototype function namely (AccountInfo.prototype.charge) & (AccountInfo.prototype.credit) inside of /utils/data.js can use it when the data is queried. 
 
- Using the Luhn algroalgorithem  verify the account number before it is created and it results is returned the function that calls it. 
+Using the Luhn algroalgorithem  verify the account number before it is created and it results is returned the function that calls it. 
+
+ Credit card nunmber was used synonymously with Account number(account_number) as a credit needs an account or bank account to be created.
 
 - `readFile()` or 'rl' at "./stdin_inputs.js" file reads data from users inputs
 - `format_data()` and `formate_data2()` formate the inputs from 'stdin_inputs' and 'input.js'  then parse the data to individual row s. The collected data are stored in an accounts as objects allowing for key ,value pairs so to query the data for later use.
@@ -35,6 +37,8 @@ so I query the "input.txt" file after every call  and store it a Object so that 
 #### Why I picked Javascript
 
 - Javascript is the language that I have used the most over this last year
+- As a developer that enjoy mobile app developement, Javascript was the best choose for me to really learn as i can use the same logic for React.js and React native.
+- It works great with Ruby and Ruby on rails
 - It's not an easy language to write compared to python. 
 - However, It's beautiful easy for anybody to understand the thought process on a basic level.
 
