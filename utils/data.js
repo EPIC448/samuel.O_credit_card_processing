@@ -1,18 +1,16 @@
 
 import { default as valid_credit_card } from '../utils/luhn.js'
 import { default as fs } from 'fs';
-import { formatWithOptions } from 'util';
 
 let accounts = {}
 
 function formate_data(data) {
     let line = data.toString().trim().split(' ')
-    
     if (line[0] == "Add") {
-console.log(line[0])
         accounts = (AccountInfo(line[1], line[2], line[3]))
 
- return
+        return process.stdout.write(`${accounts.person_name}: ${accounts.limit} \n`)
+        
     } else if (line[0] == 'Charge') {
         
         AccountInfo.prototype.charge(line[1], line[2])
@@ -26,7 +24,7 @@ console.log(line[0])
 
 function AccountInfo( person_name, account_number, limit, verified= "",balance = 0 ) {
     
-    // if not valid_credit_card != balance  =  "err0r"
+    // if not valid_credit_card != balance  =  "error"
    
     person_name = person_name;
     account_number = account_number;
@@ -44,15 +42,14 @@ function AccountInfo( person_name, account_number, limit, verified= "",balance =
     }
 }
 
-function formate_data2(data) {
+function templateForCreditAndCharge(data) {
     let line = data.toString().trim().split(' ')
     
     if (line[0] == "Add") {
         accounts = (AccountInfo(line[1], line[2], line[3]))
     }
     
-    // console.log(accounts)
-    return process.stdout.write(`${accounts.limit}:  ${accounts.person_name}`)
+    return process.stdout.write(`${accounts.person_name}: ${accounts.limit} \n`)
 }
 
 
@@ -65,36 +62,24 @@ function readFile() {
         var myStringArray = data;
         var arrayLength = myStringArray.length;
         for (var i = 0; i < arrayLength; i++) {
-             formate_data2(myStringArray[i]);
+            templateForCreditAndCharge(myStringArray[i]);
         }
-        // // line.toString().trim().split(' ')
-        // // accountCollet = ([line[0]], [line[2]], [line[3]])
-        // data.map(function (element) {
-        //     element.split('  ')[0]
-        //         // .forEach(element => {
-                
-        //         console.log(element)
-        //     // });
-        // })
-        
-    
         
     })
     
 }
- 
 
 AccountInfo.prototype.charge = function (person_name, balance) {
     readFile()
-    
-    if (accounts.name = person_name) {
+    accounts = accounts
+    if (accounts.name == person_name) {
         if (accounts.verified != true) return balance = 'error'
         if (accounts.balance + balance < accounts.limit) {
             account.balance += balance
         }
         
-       return process.stdout.write(`${person_name}: $${accounts.balance}:`)
     }
+    return process.stdout.write(`${person_name}:  $${accounts.balance} \n`)
        
  }
 
@@ -107,7 +92,7 @@ AccountInfo.prototype.charge = function (person_name, balance) {
     } else {
         return
         }
-        process.stdout.write(`${accounts.person_name}: $${accounts.balance}`)
+       return  process.stdout.write(`${accounts.person_name}:  $${accounts.balance} \n`)
      
  }
  
