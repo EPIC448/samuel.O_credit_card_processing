@@ -1,111 +1,102 @@
 
-
-
 import { default as valid_credit_card } from '../utils/luhn.js'
-import { default as fs } from 'fs'
+import { default as fs } from 'fs';
 
-function formate_data(data, accounts = [], transactions = []) {
+let accounts = {}
+
+function formate_data(data) {
     let line = data.toString().trim().split(' ')
-    /* line =  Add john 213123123 $3233434  
-    console.log(line[0])   //Add     
-    console.log(line[2])   //213123123     
-    
+    if (line[0] == "Add") {
+        accounts = (AccountInfo(line[1], line[2], line[3]))
 
-    name of person = person_name
-    */
-    let person_name;
-    let limit;
-    let account_number;
-    let amount;
-    let verified;
-    
-    // const remove$ = (str) => {
-    //    return  str.replace('$', '')
+        return process.stdout.write(`${accounts.person_name}: ${accounts.limit} \n`)
         
-    // }
+    } else if (line[0] == 'Charge') {
+        
+        AccountInfo.prototype.charge(line[1], line[2])
+    } else if (line[0] == 'Credit') {
+       AccountInfo.prototype.credit(line[1], line[2])
 
-    let formateTransactionOrAcc = {
-        person_name: "",
-        acount_number: 0,
-        limit: 0,
-        amount:0,
-        verified: ''
-          
-    }
-    let accObj = {
-        person_name : line[1],
-        account_number : line[2],
-        // limit : parseInt(remove$(line[3])),
-        limit : line[3],
-        amount : 0,
-        verified : valid_credit_card(line[2])
-    }
-    
-    let transactionObj = {
-        type: line[0],
-        person_name: line[1],
-        amount: line[2]      
-    }
-    
-    
-    var accTemplateMaker = function (object) {
-        return function (context) {
-            var replacer = function (key, val) {
-                if (typeof val === 'function') {
-                    return context[val()]
-                }
-                return val;
-            }
-            return JSON.parse(JSON.stringify(accObj, replacer))
-
-            
-        }
     }
 
-
-var transactionMaker = function (object) {
-    return function (context) {
-        var replacer = function (key, val) {
-            if (typeof val === 'function') {
-                return context[val()]
-            }
-            return val;
-        }
-        return JSON.parse(JSON.stringify(transactionObj, replacer))
-    }
 }
 
 
-
+function AccountInfo( person_name, account_number, limit, verified= "",balance = 0 ) {
     
-    if (line[0] == 'Add') {
-            
-            let template = accTemplateMaker(accObj)
-            let render = template(formateTransactionOrAcc)
-            accounts.push(render)
-            
-        } else {
-            
-        let template = transactionMaker(transactionObj)
-        let render = template(formateTransactionOrAcc)
-        transactions.push(render)
+    // if not valid_credit_card != balance  =  "error"
+   
+    person_name = person_name;
+    account_number = account_number;
+    limit = limit;
+    verified = valid_credit_card(account_number);
+    balance = verified != true ? "error" : balance;
+    //return value as object
+    return {
+      
+        person_name,
+        account_number,
+        limit,
+        balance,
+        verified
+    }
+}
+
+function templateForCreditAndCharge(data) {
+    let line = data.toString().trim().split(' ')
+    
+    if (line[0] == "Add") {
+        accounts = (AccountInfo(line[1], line[2], line[3]))
+    }
+    
+    return process.stdout.write(`${accounts.person_name}: ${accounts.limit} \n`)
+}
+
+
+function readFile() {
+    fs.readFile('./input.txt', 'utf-8', (err, data) => {
+        if (err) throw err;
+        
+        
+        data = (data.toString().split("\n"))
+        var myStringArray = data;
+        var arrayLength = myStringArray.length;
+        for (var i = 0; i < arrayLength; i++) {
+            templateForCreditAndCharge(myStringArray[i]);
         }
-    console.log (accounts, transactions)
-    return (accounts,  transactions)
-/* Print out
-accounts
-            [
-  {
-    person_name: 'Lisa',
-    account_number: '31231344',
-    limit: 1212131,
-    amount: 0,
-    verified: 'error'
-  }
-] [for transactions] => [ { type: 'Charge', person_name: 'Tom', amount: '$800,Add' } ]
-             */
+        
+    })
     
-}// end of function
+}
+
+AccountInfo.prototype.charge = function (person_name, balance) {
+    readFile()
+    accounts = accounts
+    if (accounts.name == person_name) {
+        if (accounts.verified != true) return balance = 'error'
+        if (accounts.balance + balance < accounts.limit) {
+            account.balance += balance
+        }
+        
+    }
+    return process.stdout.write(`${person_name}:  $${accounts.balance} \n`)
+       
+ }
+
+ AccountInfo.prototype.credit = function ( person_name, balance ) {
+    readFile() 
+
+    if (accounts.name = person_name) {
+        if (accounts.verified != true) return balance = 'error'
+            accounts.balance -= balance
+    } else {
+        return
+        }
+       return  process.stdout.write(`${accounts.person_name}:  $${accounts.balance} \n`)
+     
+ }
+ 
+
+export default formate_data; AccountInfo;
 
 
-export default formate_data; 
