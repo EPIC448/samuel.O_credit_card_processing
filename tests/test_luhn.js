@@ -5,10 +5,13 @@ const { valid_credit_card,add } = import('../utils/luhn.js');
 const { AccountInfo } = import('../utils/data.js');
 
 test('should add two numbers', () => {
+    console.log('tests1')
     assert.equal(add(1,2), 3)
 })
 
 test('should true if account number is valid else false', () => {
+    console.log('tests2')
+
     assert.fail((valid_credit_card('123456789') ), false, 'accountNumber no valid', '=') // want to return true
     assert.fail((valid_credit_card('022043850') ), false, 'accountNumber no valid', '=') // want to return false
     assert.equal((valid_credit_card('4111111111111111') ),true, 'accountNumber is valid') // want to return false
