@@ -1,39 +1,27 @@
 import assert from 'assert/strict';
+import { default as format_data } from '../utils/data.js'
+import {default as test} from '../tests/test.js'
+const { valid_credit_card,add } = import('../utils/luhn.js');
+const { AccountInfo } = import('../utils/data.js');
 
-const LuhnTest = () => { console.log("inside test LuhnTest") }
-export default LuhnTest;
-// import { default as format_data } from '../utils/data.js'
+test('should add two numbers', () => {
+    assert.equal(add(1,2), 3)
+})
 
-// import {default as luhnObj} from '../utils/luhn.js'
+test('should true if account number is valid else false', () => {
+    assert.fail((valid_credit_card('123456789') ), false, 'accountNumber no valid', '=') // want to return true
+    assert.fail((valid_credit_card('022043850') ), false, 'accountNumber no valid', '=') // want to return false
+    assert.equal((valid_credit_card('4111111111111111') ),true, 'accountNumber is valid') // want to return false
+})
 
-// let _digits_of = luhnObj._digits_of
-// let _luhn_checksum = luhnObj._luhn_checksum
-// let is_luhn_valid = luhnObj.is_luhn_valid
-// console.log(_digits_of, _luhn_checksum, is_luhn_valid)
-
-// class LuhnTest{
-//     constructor(testcase) {
-     
-//     }
+test("AccountInfo should return person_name = string, account_number = digits, limit = digit, balance = string", () => {
+   let newAcc =  AccountInfo(person_name = "steve", account_number = "433423423", limit = "$232312", balance = 0)
     
-//     // not sure if to use .TestCase here
-//      test_digits_of =(self)=>{
-//         self.assert.equal(_digits_of('123456789'), [1,2,3,4,5,6,7,8,9])
-//     }
-//      test_luhn_checksum =(self)=>{
-//         self.assert.equal(_digits_of('123456789'), 7),
-//         self.assert.equal(_digits_of('022043850'), 5),
-//         self.assert.equal(_digits_of('957392048'), 2)
-//     }
-//      test_is_luhn_valid =(self)=>{
-//         self.assert.fail(is_luhn_valid('123456789'))
-//         self.assert.fail(is_luhn_valid('022043850'))
-//         self.assert.fail(is_luhn_valid('957392048'))
-//         self.assert.fail(is_luhn_valid('304859302'))
-//         self.assert.fail(is_luhn_valid('4111111111111111'))
-//         self.assert.fail(is_luhn_valid('5454545454545454'))
-//     }
-// }
+    switch (newAcc) {
+        case 1: assert.equal((typeof newAcc.person_name), string)
+         case 2: assert.equal((typeof newAcc.account_number), string)
+         case 3: assert.equal((typeof newAcc.limit), number)
+        case 4: assert.equal((typeof newAcc.balance), string)
+    }
 
-
-export default LuhnTest;
+})

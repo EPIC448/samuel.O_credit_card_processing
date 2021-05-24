@@ -11,7 +11,7 @@
 
 To Test The file.
  (cd/path/to/braintree/CREDIT-CARD-PROCESS/tests)
-  run "node test_collection.js"
+  run "node test_luhn.js"
   
 
 

@@ -22,16 +22,7 @@ rl.question('Input Data', data => {
   
    
     
-  
-    //   // let credit_data = credit_Card_Inforamtion(formate_data(content))
-    //   // console.log(credit_data)
-     
-    //     // credit_data deals with Transctions
-         
 
-   
-
-    // })
 
 
   

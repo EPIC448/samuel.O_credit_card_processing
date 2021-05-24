@@ -22,7 +22,7 @@ function valid_credit_card(value) {
       return ((nCheck % 10) == 0) == true ? true : false;
     }
   
+const add = (a,b) => a + b
 
 
-
-export default valid_credit_card;
+export default valid_credit_card; add;
