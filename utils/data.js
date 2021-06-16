@@ -71,6 +71,7 @@ function readFile() {
 
 AccountInfo.prototype.charge = function (person_name, balance) {
     readFile()
+    console.log(accounts)
     accounts = accounts
     if (accounts.name == person_name) {
         if (accounts.verified != true) return balance = 'error'
